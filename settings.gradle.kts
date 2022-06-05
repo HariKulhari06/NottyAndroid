@@ -25,3 +25,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "NottyAndroid"
 include (":app")
+include(":core-ui")
+include(":core-navigation")
+include(":feature-notes")

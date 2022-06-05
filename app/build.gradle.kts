@@ -55,6 +55,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature-notes"))
+
+
+    implementation(project(":core-navigation"))
+    implementation(project(":core-ui"))
+
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
