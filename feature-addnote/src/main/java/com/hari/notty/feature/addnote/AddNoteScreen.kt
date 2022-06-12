@@ -7,6 +7,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.VectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -86,6 +88,7 @@ fun AddNoteScreen(
 fun NotesSettingsRow(
     modifier: Modifier = Modifier,
 ) {
+
     Surface(
         modifier = modifier
             .fillMaxWidth()
@@ -98,12 +101,18 @@ fun NotesSettingsRow(
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            (0..5).forEach {
+            mutableListOf<Painter>(
+                painterResource(id = R.drawable.text_bold),
+                painterResource(id = R.drawable.text_italic),
+                painterResource(id = R.drawable.text_underline),
+                painterResource(id = R.drawable.textalign_justifycenter),
+                painterResource(id = R.drawable.link),
+            ).forEachIndexed { index, painter ->
                 IconButton(onClick = { }) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_close_circle),
+                        painter = painter,
                         contentDescription = null,
-                        tint = if(it ==0 ) MaterialTheme.colorScheme.tertiary else Color.Gray
+                        tint = if(index ==0 ) MaterialTheme.colorScheme.tertiary else Color.Gray
                     )
                 }
             }

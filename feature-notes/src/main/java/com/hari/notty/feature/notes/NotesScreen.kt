@@ -14,6 +14,7 @@ import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -153,9 +154,15 @@ fun NotesGrid(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteCardItem(modifier: Modifier = Modifier) {
+    val colors = mutableListOf<Color>(
+        MaterialTheme.colorScheme.primaryContainer,
+        MaterialTheme.colorScheme.secondaryContainer,
+        MaterialTheme.colorScheme.tertiaryContainer,
+    )
     OutlinedCard(
         modifier = modifier,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
+        colors = CardDefaults.outlinedCardColors(containerColor = colors.random() ),
         onClick = { }
     ) {
 
