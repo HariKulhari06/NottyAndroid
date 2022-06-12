@@ -55,6 +55,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature-welcome"))
     implementation(project(":feature-notes"))
 
 

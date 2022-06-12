@@ -8,4 +8,6 @@
 
     <!-- Status bar -->
     <color name="black30">#4D000000</color>
+
+    <color name="ic_launch_background">#FFFFDAD4</color>
 </resources>

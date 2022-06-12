@@ -24,6 +24,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.hari.notty.feature.notes.navigation.NotesDestination
 import com.hari.notty.feature.notes.navigation.notesGraph
+import com.hari.notty.feature.welcome.navigation.WelcomeDestination
+import com.hari.notty.feature.welcome.navigation.welcomeGraph
 
 /**
  * Top-level navigation graph. Navigation is organized as explained at
@@ -37,13 +39,23 @@ fun NottyNavHost(
     windowSizeClass: WindowSizeClass,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = NotesDestination.route
+    startDestination: String = WelcomeDestination.route
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier,
     ) {
+
+        welcomeGraph(
+            windowSizeClass = windowSizeClass,
+            navigateToNextScreen = {
+                navController.navigate(
+                    route = NotesDestination.route,
+                )
+            }
+        )
+
         notesGraph(windowSizeClass = windowSizeClass)
     }
 }
