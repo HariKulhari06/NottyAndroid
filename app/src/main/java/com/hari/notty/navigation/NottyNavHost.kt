@@ -1,19 +1,3 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.hari.notty.navigation
 
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
@@ -22,6 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navOptions
+import com.hari.notty.feature.addnote.navigation.AddNoteDestination
+import com.hari.notty.feature.addnote.navigation.addNoteGraph
 import com.hari.notty.feature.notes.navigation.NotesDestination
 import com.hari.notty.feature.notes.navigation.notesGraph
 import com.hari.notty.feature.welcome.navigation.WelcomeDestination
@@ -52,10 +39,24 @@ fun NottyNavHost(
             navigateToNextScreen = {
                 navController.navigate(
                     route = NotesDestination.route,
+                    navOptions {
+                        launchSingleTop = true
+                        popUpTo(WelcomeDestination.route) {
+                            inclusive = true
+                        }
+                    }
                 )
             }
         )
 
-        notesGraph(windowSizeClass = windowSizeClass)
+        notesGraph(
+            windowSizeClass = windowSizeClass,
+            navigateToAddNote = { navController.navigate(AddNoteDestination.route) }
+        )
+
+        addNoteGraph(
+            windowSizeClass = windowSizeClass,
+            navController = navController
+        )
     }
 }

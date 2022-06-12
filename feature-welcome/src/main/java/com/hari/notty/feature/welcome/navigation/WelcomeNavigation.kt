@@ -20,7 +20,7 @@ fun NavGraphBuilder.welcomeGraph(
         WelcomeRoute(
             windowSizeClass = windowSizeClass,
             coroutineScope = rememberCoroutineScope(),
-            navigateToNextScreen = navigateToNextScreen,
+            navigateToNextScreen = navigateToNextScreen
         )
     }
 }

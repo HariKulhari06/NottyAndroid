@@ -25,10 +25,10 @@ import com.hari.notty.core.ui.component.NottyGradientBackground
 @Composable
 fun NotesRoute(
     windowSizeClass: WindowSizeClass,
+    navigateToAddNote: () -> Unit,
     notesViewModel: NotesViewModel = hiltViewModel()
 ) {
-    val count by notesViewModel.count.collectAsState(0)
-    NotesScreen()
+    NotesScreen(navigateToAddNote)
 }
 
 @OptIn(
@@ -37,19 +37,27 @@ fun NotesRoute(
 )
 @Composable
 fun NotesScreen(
+    navigateToAddNote: () -> Unit
 ) {
     NottyGradientBackground {
         Scaffold(
             topBar = {
                 NotesTopAppBar()
             },
-            bottomBar = { NotesBottomBar() }
+            floatingActionButton = {
+                FloatingActionButton(
+                    onClick = navigateToAddNote,
+                    containerColor = MaterialTheme.colorScheme.tertiaryContainer
+                ) {
+                    Icon(painter = painterResource(id = R.drawable.add), contentDescription = null)
+                }
+            }
         ) { innerPadding ->
             NotesGrid(
                 modifier = Modifier
                     .padding(innerPadding)
                     .consumedWindowInsets(innerPadding),
-                notes = listOf(1,2,3,4,5,6,7,8,9)
+                notes = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
             )
         }
     }
@@ -62,7 +70,8 @@ private fun NotesTopAppBar() {
         modifier = Modifier.statusBarsPadding(),
         title = {
             Text(
-                text = "Notty"
+                text = "Notty",
+                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.SemiBold)
             )
         },
         navigationIcon = {
@@ -147,7 +156,6 @@ fun NoteCardItem(modifier: Modifier = Modifier) {
     OutlinedCard(
         modifier = modifier,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
-        colors = CardDefaults.outlinedCardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
         onClick = { }
     ) {
 
@@ -191,7 +199,9 @@ fun NoteCardItem(modifier: Modifier = Modifier) {
 
 
 @Composable
-fun NotesBottomBar() {
+fun NotesBottomBar(
+    onClickFloatingActionButton: () -> Unit
+) {
     Surface(
         shape = MaterialTheme.shapes.large.copy(
             bottomEnd = CornerSize(0.dp),
@@ -222,7 +232,7 @@ fun NotesBottomBar() {
                 }
             },
             floatingActionButton = {
-                FloatingActionButton(onClick = { }) {
+                FloatingActionButton(onClick = onClickFloatingActionButton) {
                     Icon(painter = painterResource(id = R.drawable.add), contentDescription = null)
                 }
             }
@@ -248,7 +258,7 @@ fun NotesCategorySelectorPreview() {
 @Preview
 @Composable
 fun NotesBottomBarPreview() {
-    NotesBottomBar()
+    NotesBottomBar(onClickFloatingActionButton = {})
 }
 
 @Preview
@@ -268,5 +278,5 @@ fun NotesGridPreview() {
 @Preview
 @Composable
 fun NotesScreenPreview() {
-    NotesScreen()
+    NotesScreen(navigateToAddNote = {})
 }

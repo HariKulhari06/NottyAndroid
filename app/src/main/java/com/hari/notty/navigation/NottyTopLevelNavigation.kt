@@ -1,24 +1,13 @@
-/*
- * Copyright 2022 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.hari.notty.navigation
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Upcoming
+import androidx.compose.material.icons.outlined.Upcoming
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.hari.notty.feature.notes.R.string.notes
+import com.hari.notty.feature.notes.navigation.NotesDestination
 
 /**
  * Routes for the different top level destinations in the application. Each of these destinations
@@ -55,4 +44,28 @@ data class TopLevelDestination(
     val iconTextId: Int
 )
 
+
+val TOP_LEVEL_DESTINATIONS = listOf(
+    TopLevelDestination(
+        route = NotesDestination.route,
+        selectedIcon = Icons.Filled.Upcoming,
+        unselectedIcon = Icons.Outlined.Upcoming,
+        iconTextId = notes
+    ), TopLevelDestination(
+        route = NotesDestination.route,
+        selectedIcon = Icons.Filled.Upcoming,
+        unselectedIcon = Icons.Outlined.Upcoming,
+        iconTextId = notes
+    ), TopLevelDestination(
+        route = NotesDestination.route,
+        selectedIcon = Icons.Filled.Upcoming,
+        unselectedIcon = Icons.Outlined.Upcoming,
+        iconTextId = notes
+    ), TopLevelDestination(
+        route = NotesDestination.route,
+        selectedIcon = Icons.Filled.Upcoming,
+        unselectedIcon = Icons.Outlined.Upcoming,
+        iconTextId = notes
+    )
+)
 
