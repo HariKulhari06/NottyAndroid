@@ -1,13 +1,18 @@
 package com.hari.notty.navigation
 
+import androidx.annotation.DrawableRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Upcoming
 import androidx.compose.material.icons.outlined.Upcoming
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.hari.notty.R
+import com.hari.notty.feature.addnote.navigation.AddNoteDestination
+import com.hari.notty.feature.category.R.string.categories
+import com.hari.notty.feature.category.navigation.CategoryDestination
 import com.hari.notty.feature.notes.R.string.notes
 import com.hari.notty.feature.notes.navigation.NotesDestination
+import com.hari.notty.feature.welcome.navigation.WelcomeDestination
 
 /**
  * Routes for the different top level destinations in the application. Each of these destinations
@@ -39,8 +44,8 @@ class NottyTopLevelNavigation(private val navController: NavHostController) {
 
 data class TopLevelDestination(
     val route: String,
-    val selectedIcon: ImageVector,
-    val unselectedIcon: ImageVector,
+    @DrawableRes val selectedIcon: Int,
+    @DrawableRes val unselectedIcon: Int,
     val iconTextId: Int
 )
 
@@ -48,23 +53,23 @@ data class TopLevelDestination(
 val TOP_LEVEL_DESTINATIONS = listOf(
     TopLevelDestination(
         route = NotesDestination.route,
-        selectedIcon = Icons.Filled.Upcoming,
-        unselectedIcon = Icons.Outlined.Upcoming,
+        selectedIcon = R.drawable.home,
+        unselectedIcon = R.drawable.home,
         iconTextId = notes
     ), TopLevelDestination(
-        route = NotesDestination.route,
-        selectedIcon = Icons.Filled.Upcoming,
-        unselectedIcon = Icons.Outlined.Upcoming,
+        route = WelcomeDestination.route,
+        selectedIcon = R.drawable.search_status,
+        unselectedIcon = R.drawable.search_status,
         iconTextId = notes
     ), TopLevelDestination(
-        route = NotesDestination.route,
-        selectedIcon = Icons.Filled.Upcoming,
-        unselectedIcon = Icons.Outlined.Upcoming,
-        iconTextId = notes
+        route = CategoryDestination.route,
+        selectedIcon = R.drawable.menu,
+        unselectedIcon = R.drawable.menu,
+        iconTextId = categories
     ), TopLevelDestination(
-        route = NotesDestination.route,
-        selectedIcon = Icons.Filled.Upcoming,
-        unselectedIcon = Icons.Outlined.Upcoming,
+        route = AddNoteDestination.route,
+        selectedIcon = R.drawable.settings,
+        unselectedIcon = R.drawable.settings,
         iconTextId = notes
     )
 )

@@ -58,6 +58,7 @@ dependencies {
     implementation(project(":feature-welcome"))
     implementation(project(":feature-notes"))
     implementation(project(":feature-addnote"))
+    implementation(project(":feature-category"))
 
 
     implementation(project(":core-navigation"))

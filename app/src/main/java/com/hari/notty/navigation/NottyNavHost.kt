@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.hari.notty.feature.addnote.navigation.AddNoteDestination
 import com.hari.notty.feature.addnote.navigation.addNoteGraph
+import com.hari.notty.feature.category.navigation.categoryGraph
 import com.hari.notty.feature.notes.navigation.NotesDestination
 import com.hari.notty.feature.notes.navigation.notesGraph
 import com.hari.notty.feature.welcome.navigation.WelcomeDestination
@@ -55,6 +56,11 @@ fun NottyNavHost(
         )
 
         addNoteGraph(
+            windowSizeClass = windowSizeClass,
+            navController = navController
+        )
+
+        categoryGraph(
             windowSizeClass = windowSizeClass,
             navController = navController
         )

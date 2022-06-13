@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
@@ -84,7 +85,10 @@ fun NottyBottomBar(
     ) {
         Surface(
             color = Color.Transparent,
-            shape = MaterialTheme.shapes.large.copy(bottomStart = CornerSize(0.dp), bottomEnd = CornerSize(0.dp))
+            shape = MaterialTheme.shapes.large.copy(
+                bottomStart = CornerSize(0.dp),
+                bottomEnd = CornerSize(0.dp)
+            )
         ) {
             NavigationBar(
                 modifier = Modifier.windowInsetsPadding(
@@ -103,10 +107,10 @@ fun NottyBottomBar(
                         onClick = { onNavigateToTopLevelDestination(destination) },
                         icon = {
                             Icon(
-                                if (selected) {
-                                    destination.selectedIcon
+                                painter = if (selected) {
+                                    painterResource(id = destination.selectedIcon)
                                 } else {
-                                    destination.unselectedIcon
+                                    painterResource(id = destination.unselectedIcon)
                                 },
                                 contentDescription = null
                             )
