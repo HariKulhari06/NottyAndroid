@@ -71,6 +71,16 @@ val Teal40 = Color(0xFF3A656F)
 val Teal80 = Color(0xFFA2CED9)
 val Teal90 = Color(0xFFBEEAF6)
 
+val NottyGreen = Color(0xFF54D25D)
+val NottyBlue = Color(0xFF428BFA)
+val NottyPink = Color(0xFFE86AFF)
+val NottyYellow = Color(0xFFFFC545)
+
+val NottyLightGreen = Color(0xFF54D25D).lighten(0.95f)
+val NottyLightBlue = Color(0xFF428BFA).lighten(0.95f)
+val NottyLightPink = Color(0xFFE86AFF).lighten(0.95f)
+val NottyLightYellow = Color(0xFFFFC545).lighten(0.95f)
+
 /**
  * Lighten the current [Color] instance to the given [luminance].
  *

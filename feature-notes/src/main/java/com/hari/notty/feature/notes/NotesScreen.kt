@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.hari.notty.core.ui.component.NottyGradientBackground
+import com.hari.notty.core.ui.theme.*
 
 @Composable
 fun NotesRoute(
@@ -155,13 +156,13 @@ fun NotesGrid(
 @Composable
 fun NoteCardItem(modifier: Modifier = Modifier) {
     val colors = mutableListOf<Color>(
-        MaterialTheme.colorScheme.primaryContainer,
-        MaterialTheme.colorScheme.secondaryContainer,
-        MaterialTheme.colorScheme.tertiaryContainer,
+        NottyLightBlue,
+        NottyLightGreen,
+        NottyLightPink,
+        NottyLightYellow
     )
-    OutlinedCard(
+    ElevatedCard(
         modifier = modifier,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
         colors = CardDefaults.outlinedCardColors(containerColor = colors.random() ),
         onClick = { }
     ) {
