@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.hari.notty.core.ui.FilterRow
 import com.hari.notty.core.ui.component.NottyGradientBackground
 import com.hari.notty.core.ui.theme.*
 
@@ -136,6 +137,7 @@ fun NotesCategorySelector(
 }
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NotesGrid(
     modifier: Modifier = Modifier,
@@ -146,6 +148,9 @@ fun NotesGrid(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
     ) {
+        stickyHeader(key = "w1") {
+            FilterRow(lable = "List Notes")
+        }
         items(notes, key = { it }) {
             NoteCardItem()
         }

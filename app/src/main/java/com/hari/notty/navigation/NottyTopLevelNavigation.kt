@@ -57,7 +57,7 @@ val TOP_LEVEL_DESTINATIONS = listOf(
         unselectedIcon = R.drawable.home,
         iconTextId = notes
     ), TopLevelDestination(
-        route = WelcomeDestination.route,
+        route = NotesDestination.route,
         selectedIcon = R.drawable.search_status,
         unselectedIcon = R.drawable.search_status,
         iconTextId = notes
@@ -67,7 +67,7 @@ val TOP_LEVEL_DESTINATIONS = listOf(
         unselectedIcon = R.drawable.menu,
         iconTextId = categories
     ), TopLevelDestination(
-        route = AddNoteDestination.route,
+        route = CategoryDestination.route,
         selectedIcon = R.drawable.settings,
         unselectedIcon = R.drawable.settings,
         iconTextId = notes

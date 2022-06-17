@@ -40,10 +40,10 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
             dependencies {
-               // add("implementation", project(":core-model"))
+                add("implementation", project(":core-model"))
                 add("implementation", project(":core-ui"))
                 //add("implementation", project(":core-data"))
-                //add("implementation", project(":core-common"))
+                add("implementation", project(":core-common"))
                 add("implementation", project(":core-navigation"))
 
                // add("testImplementation", project(":core-testing"))
