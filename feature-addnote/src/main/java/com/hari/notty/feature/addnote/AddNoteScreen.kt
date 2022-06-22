@@ -8,7 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.graphics.vector.VectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -24,8 +23,8 @@ fun AddNoteRout(
     navController: NavHostController,
     addNoteViewModel: AddNoteViewModel = hiltViewModel()
 ) {
-    val headline = addNoteViewModel.headline.collectAsState(initial = "")
-    val note = addNoteViewModel.note.collectAsState(initial = "")
+    val headline = addNoteViewModel.title.collectAsState(initial = "")
+    val note = addNoteViewModel.description.collectAsState(initial = "")
 
     AddNoteScreen(
         windowSizeClass = windowSizeClass,
@@ -33,7 +32,8 @@ fun AddNoteRout(
         headline = headline,
         onHeadlineChange = addNoteViewModel::setHeadline,
         note = note,
-        onNoteChange = addNoteViewModel::setNote
+        onNoteChange = addNoteViewModel::setNote,
+        addNote = addNoteViewModel::addNote
     )
 }
 
@@ -46,13 +46,14 @@ fun AddNoteScreen(
     onHeadlineChange: (String) -> Unit,
     note: State<String>,
     onNoteChange: (String) -> Unit,
+    addNote: () -> Unit,
 ) {
     NottyBackground {
         Scaffold(
             topBar = {
                 AddNoteToolbar(
                     onClickNavigationIcon = { navController.popBackStack() },
-                    onClickAddNote = {}
+                    onClickAddNote = addNote
                 )
             }
         ) { innerPadding ->
@@ -112,7 +113,7 @@ fun NotesSettingsRow(
                     Icon(
                         painter = painter,
                         contentDescription = null,
-                        tint = if(index ==0 ) MaterialTheme.colorScheme.tertiary else Color.Gray
+                        tint = if (index == 0) MaterialTheme.colorScheme.tertiary else Color.Gray
                     )
                 }
             }

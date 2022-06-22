@@ -1,5 +1,6 @@
 package com.hari.notty.core.network.retrofit
 
+import com.hari.notty.core.network.model.AddNoteRequest
 import com.hari.notty.core.network.model.NetworkNote
 import retrofit2.http.*
 
@@ -11,7 +12,7 @@ interface NoteService {
     suspend fun getNote(@Query("note_id") noteId: String)
 
     @POST("v1/api/note")
-    suspend fun addNote(@Body networkNote: NetworkNote = NetworkNote.SAMPLE): String
+    suspend fun addNote(@Body networkNote: AddNoteRequest): NetworkNote
 
     @PUT("v1/api/note")
     suspend fun updateNote()

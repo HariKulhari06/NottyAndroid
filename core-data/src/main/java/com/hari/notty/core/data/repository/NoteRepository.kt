@@ -1,5 +1,5 @@
 package com.hari.notty.core.data.repository
 
 interface NoteRepository {
-    suspend fun addNote()
+    suspend fun addNote(title:String,description:String)
 }
