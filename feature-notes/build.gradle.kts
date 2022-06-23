@@ -13,4 +13,6 @@ dependencies {
     implementation(libs.androidx.compose.material3.windowSizeClass)
 
     implementation(libs.accompanist.flowlayout)
+
+    implementation(libs.androidx.paging.compose)
 }

@@ -20,6 +20,7 @@ plugins {
     id("kotlinx-serialization")
     id("dagger.hilt.android.plugin")
     id("notty.spotless")
+    alias(libs.plugins.ksp)
 }
 
 dependencies {
@@ -36,6 +37,12 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.serialization.json)
 
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.androidx.paging.compose)
 }

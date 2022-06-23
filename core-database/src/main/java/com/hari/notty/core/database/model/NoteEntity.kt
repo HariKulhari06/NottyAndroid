@@ -8,12 +8,16 @@ import com.hari.notty.core.model.data.Note
 data class NoteEntity(
     @PrimaryKey val id: String,
     val title: String,
-    val body: String
+    val description: String,
+    val createdAt: Long,
+    val updatedAt: Long? = null
 )
 
 
 fun NoteEntity.toExternalNote() = Note(
     id = id,
     title = title,
-    body = body
+    description = description,
+    createdAt = createdAt,
+    updatedAt = updatedAt
 )

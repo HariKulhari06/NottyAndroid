@@ -2,12 +2,10 @@
 
 package com.hari.notty.feature.notes
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.material3.*
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
@@ -21,9 +19,16 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
+import com.hari.notty.core.model.data.Note
 import com.hari.notty.core.ui.FilterRow
 import com.hari.notty.core.ui.component.NottyGradientBackground
-import com.hari.notty.core.ui.theme.*
+import com.hari.notty.core.ui.theme.NottyLightBlue
+import com.hari.notty.core.ui.theme.NottyLightGreen
+import com.hari.notty.core.ui.theme.NottyLightPink
+import com.hari.notty.core.ui.theme.NottyLightYellow
 
 @Composable
 fun NotesRoute(
@@ -31,15 +36,18 @@ fun NotesRoute(
     navigateToAddNote: () -> Unit,
     notesViewModel: NotesViewModel = hiltViewModel()
 ) {
-    NotesScreen(navigateToAddNote)
+    NotesScreen(
+        notes = notesViewModel.notes.collectAsLazyPagingItems(),
+        navigateToAddNote = navigateToAddNote
+    )
 }
 
 @OptIn(
-    ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class,
-    ExperimentalFoundationApi::class
+    ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class
 )
 @Composable
 fun NotesScreen(
+    notes: LazyPagingItems<Note>,
     navigateToAddNote: () -> Unit
 ) {
     NottyGradientBackground {
@@ -60,7 +68,7 @@ fun NotesScreen(
                 modifier = Modifier
                     .padding(innerPadding)
                     .consumedWindowInsets(innerPadding),
-                notes = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
+                notes = notes
             )
         }
     }
@@ -141,7 +149,7 @@ fun NotesCategorySelector(
 @Composable
 fun NotesGrid(
     modifier: Modifier = Modifier,
-    notes: List<Int>
+    notes: LazyPagingItems<Note>
 ) {
     LazyColumn(
         modifier = modifier,
@@ -151,7 +159,10 @@ fun NotesGrid(
         stickyHeader(key = "w1") {
             FilterRow(lable = "List Notes")
         }
-        items(notes, key = { it }) {
+        items(
+            items = notes,
+            key = { it.id }
+        ) {
             NoteCardItem()
         }
     }
@@ -168,7 +179,7 @@ fun NoteCardItem(modifier: Modifier = Modifier) {
     )
     ElevatedCard(
         modifier = modifier,
-        colors = CardDefaults.outlinedCardColors(containerColor = colors.random() ),
+        colors = CardDefaults.outlinedCardColors(containerColor = colors.random()),
         onClick = { }
     ) {
 
@@ -283,13 +294,13 @@ fun NoteCartItemPreview() {
 @Preview
 @Composable
 fun NotesGridPreview() {
-    NotesGrid(
+    /*NotesGrid(
         notes = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
-    )
+    )*/
 }
 
 @Preview
 @Composable
 fun NotesScreenPreview() {
-    NotesScreen(navigateToAddNote = {})
+    // NotesScreen(navigateToAddNote = {}, notes = notesViewModel.notes.collectAsLazyPagingItems())
 }

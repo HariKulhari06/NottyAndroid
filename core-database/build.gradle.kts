@@ -42,6 +42,7 @@ dependencies {
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation(libs.room.paging)
     ksp(libs.room.compiler)
 
     implementation(libs.kotlinx.coroutines.android)
@@ -51,4 +52,7 @@ dependencies {
     kapt(libs.hilt.compiler)
 
 //    androidTestImplementation(project(":core-testing"))
+
+    implementation(libs.androidx.paging.compose)
+
 }

@@ -1,5 +1,6 @@
 package com.hari.notty.core.database.dao
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import com.hari.notty.core.database.model.NoteEntity
 import kotlinx.coroutines.flow.Flow
@@ -13,6 +14,11 @@ interface NoteDao {
     """
     )
     fun getNoteEntityStream(noteId: String): Flow<NoteEntity>
+
+
+    @Query(value = "SELECT * FROM note")
+    fun getNoteEntityPagingSource(): PagingSource<Int, NoteEntity>
+
 
     @Query(value = "SELECT * FROM note")
     fun getNoteEntitiesStream(): Flow<List<NoteEntity>>
@@ -33,7 +39,7 @@ interface NoteDao {
      * Inserts or updates [entities] in the db under the specified primary keys
      */
     @Transaction
-    suspend fun upsertAuthors(entities: List<NoteEntity>) = upsert(
+    suspend fun upsertNotes(entities: List<NoteEntity>) = upsert(
         items = entities,
         insertMany = ::insertOrIgnoreNotes,
         updateMany = ::updateNotes
@@ -48,5 +54,11 @@ interface NoteDao {
             WHERE id in (:ids)
         """
     )
-    suspend fun deleteAuthors(ids: List<String>)
+    suspend fun deleteNotes(ids: List<String>)
+
+    /**
+     * Deletes rows in the db matching the specified [ids]
+     */
+    @Query(value = "DELETE FROM note")
+    suspend fun deleteAllNotes()
 }
